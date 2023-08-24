@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_assessment/core/utils/assets.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
@@ -8,15 +10,22 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: const Text(
-        "My Contacts",
-        style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
+      title: Text("My Contacts",
+          style: GoogleFonts.raleway(
+            textStyle: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          )),
       centerTitle: true,
       elevation: 0,
+      actions: [
+        Container(
+          margin: const EdgeInsets.only(right: 21),
+          width: 20,
+          child: Image.asset(AssetsData.unionIcon),
+        ),
+      ],
     );
   }
 
