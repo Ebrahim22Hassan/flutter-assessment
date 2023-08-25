@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
+import 'features/edit_profile/presentation/views/edit_profile_view.dart';
 import 'features/home/presentation/views/home_view.dart';
 import 'features/profile/presentation/views/profile_view.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
           color: kPrimaryColor,
         ),
       ),
-      home: const ProfileView(),
+      home: const EditProfileView(),
     );
   }
 }

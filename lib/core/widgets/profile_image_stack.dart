@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assessment/constants.dart';
 import 'package:flutter_assessment/core/utils/assets.dart';
-import 'package:flutter_assessment/core/utils/styles.dart';
-import 'package:flutter_svg/svg.dart';
 
 class ProfileImageStack extends StatelessWidget {
   const ProfileImageStack({
     super.key,
+    required this.child,
   });
-
+  final Widget child;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -35,17 +34,9 @@ class ProfileImageStack extends StatelessWidget {
                 bottom: 5,
                 end: 5,
               ),
-              child: SizedBox(
-                  height: 25,
-                  width: 27,
-                  child: SvgPicture.asset(AssetsData.starIcon)),
+              child: SizedBox(height: 25, width: 27, child: child),
             ),
           ],
-        ),
-        const SizedBox(height: 14),
-        Text(
-          "Abo Treka",
-          style: Styles.textStyle14(FontWeight.w500),
         ),
       ],
     );
