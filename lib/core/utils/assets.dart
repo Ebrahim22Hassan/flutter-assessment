@@ -6,4 +6,5 @@ class AssetsData {
   static const testImage = "assets/images/test_image.jpg";
   static const messageIcon = "assets/icons/Frame.svg";
   static const starIcon = "assets/icons/Vector.svg";
+  static const mailIcon = "assets/images/mail_icon.png";
 }

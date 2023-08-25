@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_assessment/core/utils/styles.dart';
 
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
@@ -17,11 +17,7 @@ class CustomTextButton extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         text,
-        style: GoogleFonts.raleway(
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
-          color: textColor,
-        ),
+        style: Styles.textStyle16(textColor),
       ),
     );
   }

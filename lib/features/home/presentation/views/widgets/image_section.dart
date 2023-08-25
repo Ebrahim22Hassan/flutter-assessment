@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assessment/core/utils/assets.dart';
+import 'package:flutter_assessment/core/utils/styles.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ImageSection extends StatelessWidget {
   const ImageSection({Key? key}) : super(key: key);
@@ -22,10 +22,7 @@ class ImageSection extends StatelessWidget {
           child: Text(
             "No list of contact here, add contact now",
             textAlign: TextAlign.center,
-            style: GoogleFonts.montserrat(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-            ),
+            style: Styles.textStyle14(FontWeight.w600),
           ),
         ),
       ],
