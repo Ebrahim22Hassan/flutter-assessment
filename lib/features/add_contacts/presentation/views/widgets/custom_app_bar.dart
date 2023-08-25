@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_assessment/core/utils/assets.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../../../constants.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
@@ -10,6 +13,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      systemOverlayStyle: const SystemUiOverlayStyle(
+        statusBarColor: kPrimaryColor,
+      ),
       title: Text("My Contacts",
           style: GoogleFonts.raleway(
             textStyle: const TextStyle(
