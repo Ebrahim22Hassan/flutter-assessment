@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
-import 'features/add_contacts/presentation/views/add_contacts_view.dart';
+import 'features/home/presentation/views/home_view.dart';
+import 'features/profile/presentation/views/profile_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
           color: kPrimaryColor,
         ),
       ),
-      home: const AddContactsView(),
+      home: const ProfileView(),
     );
   }
 }

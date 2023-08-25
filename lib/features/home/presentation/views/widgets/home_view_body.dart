@@ -4,8 +4,8 @@ import 'contact_list_view.dart';
 import 'image_section.dart';
 import 'search_form_field.dart';
 
-class AddContactsViewBody extends StatelessWidget {
-  const AddContactsViewBody({Key? key}) : super(key: key);
+class HomeViewBody extends StatelessWidget {
+  const HomeViewBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
