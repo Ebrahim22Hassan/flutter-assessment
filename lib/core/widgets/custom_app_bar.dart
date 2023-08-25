@@ -7,10 +7,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
     required this.title,
-    this.icon,
+    this.actionIcon,
+    this.leadingIcon,
   });
   final String title;
-  final Widget? icon;
+  final Widget? actionIcon;
+  final Widget? leadingIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +33,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         Container(
           margin: const EdgeInsets.only(right: 21),
           width: 20,
-          child: GestureDetector(onTap: () {}, child: icon),
+          child: GestureDetector(onTap: () {}, child: actionIcon),
         ),
       ],
+      leading: leadingIcon,
     );
   }
 

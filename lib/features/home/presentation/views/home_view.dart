@@ -11,7 +11,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-          title: 'My Contacts', icon: Image.asset(AssetsData.unionIcon)),
+          title: 'My Contacts', actionIcon: Image.asset(AssetsData.unionIcon)),
       body: const HomeViewBody(),
       floatingActionButton: const AppFAB(),
     );
