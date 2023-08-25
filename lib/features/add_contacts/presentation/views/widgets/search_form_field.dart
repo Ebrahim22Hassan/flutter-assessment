@@ -9,7 +9,7 @@ class SearchFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 16, bottom: 46, left: 20, right: 20),
+      padding: const EdgeInsets.only(top: 16, bottom: 26, left: 20, right: 20),
       child: TextFormField(
         decoration: InputDecoration(
           filled: true,

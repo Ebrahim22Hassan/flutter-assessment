@@ -9,13 +9,16 @@ class AppFAB extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
-      elevation: 30,
-      onPressed: () {},
-      backgroundColor: kPrimaryColor,
-      child: SizedBox(
-        height: 20,
-        child: Image.asset(AssetsData.addIcon),
+    return Padding(
+      padding: const EdgeInsets.only(right: 30.0, bottom: 18),
+      child: FloatingActionButton(
+        elevation: 30,
+        onPressed: () {},
+        backgroundColor: kPrimaryColor,
+        child: SizedBox(
+          height: 20,
+          child: Image.asset(AssetsData.addIcon),
+        ),
       ),
     );
   }

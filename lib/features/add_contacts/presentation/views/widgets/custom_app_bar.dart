@@ -23,7 +23,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         Container(
           margin: const EdgeInsets.only(right: 21),
           width: 20,
-          child: Image.asset(AssetsData.unionIcon),
+          child: GestureDetector(
+              onTap: () {}, child: Image.asset(AssetsData.unionIcon)),
         ),
       ],
     );
