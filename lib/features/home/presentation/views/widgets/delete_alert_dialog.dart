@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assessment/constants.dart';
+import 'package:flutter_assessment/core/widgets/custom_text_button.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DeleteAlertDialog extends StatelessWidget {
@@ -31,34 +32,22 @@ class DeleteAlertDialog extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                TextButton(
+                CustomTextButton(
                   onPressed: () {},
-                  child: Text(
-                    "Yes",
-                    style: GoogleFonts.raleway(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.red,
-                    ),
-                  ),
+                  text: 'Yes',
+                  textColor: Colors.red,
                 ),
                 Container(
                   width: 2,
                   height: 60,
                   color: const Color(0xffDCDCDC), // The vertical divider color
                 ),
-                TextButton(
+                CustomTextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text(
-                    "No",
-                    style: GoogleFonts.raleway(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: kPrimaryColor,
-                    ),
-                  ),
+                  text: "No",
+                  textColor: kPrimaryColor,
                 ),
               ],
             ),
