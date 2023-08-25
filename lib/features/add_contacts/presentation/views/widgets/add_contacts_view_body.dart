@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'buttons_section.dart';
 import 'search_form_field.dart';
 
 class AddContactsViewBody extends StatelessWidget {
@@ -9,6 +10,10 @@ class AddContactsViewBody extends StatelessWidget {
     return Column(
       children: const [
         SearchFormField(),
+        Padding(
+          padding: EdgeInsets.only(left: 37),
+          child: ButtonsSection(),
+        ),
       ],
     );
   }
