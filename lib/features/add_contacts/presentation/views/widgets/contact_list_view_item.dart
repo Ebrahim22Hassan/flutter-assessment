@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/utils/assets.dart';
+import 'delete_alert_dialog.dart';
 
 class ContactsListViewItem extends StatefulWidget {
   const ContactsListViewItem({Key? key}) : super(key: key);
@@ -46,7 +47,14 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
                 ),
               ),
               SlidableAction(
-                onPressed: (context) {},
+                onPressed: (context) {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return const DeleteAlertDialog();
+                    },
+                  );
+                },
                 icon: FontAwesomeIcons.trashCan,
                 foregroundColor: Colors.red,
                 backgroundColor: kPrimaryColorWithOpacity,
