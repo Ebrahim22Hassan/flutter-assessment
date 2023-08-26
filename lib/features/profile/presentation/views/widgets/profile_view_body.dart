@@ -6,7 +6,7 @@ import 'package:flutter_assessment/core/widgets/custom_text_button.dart';
 import 'package:flutter_svg/svg.dart';
 import 'mail_section.dart';
 import '../../../../../core/widgets/profile_image_stack.dart';
-import 'send_email_button.dart';
+import '../../../../../core/widgets/custom_rounded_button.dart';
 
 class ProfileViewBody extends StatelessWidget {
   const ProfileViewBody({Key? key}) : super(key: key);
@@ -37,7 +37,9 @@ class ProfileViewBody extends StatelessWidget {
         const SizedBox(height: 14),
         const MailSection(),
         const SizedBox(height: 22),
-        const SendEmailButton()
+        const CustomRoundedButton(
+          text: "Send Email",
+        )
       ],
     );
   }

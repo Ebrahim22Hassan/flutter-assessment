@@ -5,10 +5,16 @@ abstract class Styles {
   static TextStyle textStyle14(FontWeight fontWeight) => GoogleFonts.montserrat(
         fontSize: 14,
         fontWeight: fontWeight,
+        color: Colors.black,
       );
   static TextStyle textStyle16(Color color) => GoogleFonts.raleway(
         fontSize: 16,
         fontWeight: FontWeight.w500,
+        color: color,
+      );
+  static TextStyle textStyle11(Color color) => GoogleFonts.montserrat(
+        fontSize: 11,
+        fontWeight: FontWeight.w400,
         color: color,
       );
 }
