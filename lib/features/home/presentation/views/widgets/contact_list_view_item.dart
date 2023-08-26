@@ -24,6 +24,7 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 26),
       child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: isSelected ? kPrimaryColorWithOpacity : Colors.transparent,
@@ -70,7 +71,6 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
               setState(() {
                 isSelected = !isSelected;
               });
-              GoRouter.of(context).push(AppRouter.kProfileView);
             },
             leading: const CircleAvatar(
               backgroundImage: AssetImage(AssetsData.testImage),
@@ -105,7 +105,9 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
               ),
             ),
             trailing: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  GoRouter.of(context).push(AppRouter.kProfileView);
+                },
                 child: SvgPicture.asset(
                   AssetsData.messageIcon,
                 )),
