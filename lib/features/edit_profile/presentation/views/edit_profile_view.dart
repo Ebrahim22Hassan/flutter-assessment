@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assessment/core/widgets/custom_app_bar.dart';
+import 'package:go_router/go_router.dart';
 import 'widgets/edit_profile_view_body.dart';
 
 class EditProfileView extends StatelessWidget {
@@ -11,7 +12,10 @@ class EditProfileView extends StatelessWidget {
       appBar: CustomAppBar(
         title: 'Profile',
         leadingIcon: IconButton(
-            onPressed: () {}, icon: const Icon(Icons.arrow_back_ios)),
+            onPressed: () {
+              GoRouter.of(context).pop();
+            },
+            icon: const Icon(Icons.arrow_back_ios)),
       ),
       body: const EditProfileViewBody(),
     );

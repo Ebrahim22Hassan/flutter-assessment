@@ -4,6 +4,8 @@ import 'package:flutter_assessment/core/utils/assets.dart';
 import 'package:flutter_assessment/core/utils/styles.dart';
 import 'package:flutter_assessment/core/widgets/custom_text_button.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../core/utils/app_router.dart';
 import 'mail_section.dart';
 import '../../../../../core/widgets/profile_image_stack.dart';
 import '../../../../../core/widgets/custom_rounded_button.dart';
@@ -21,7 +23,9 @@ class ProfileViewBody extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               CustomTextButton(
-                onPressed: () {},
+                onPressed: () {
+                  GoRouter.of(context).push(AppRouter.kEditProfileView);
+                },
                 text: "Edit",
                 textColor: kPrimaryColor,
               ),
@@ -37,9 +41,7 @@ class ProfileViewBody extends StatelessWidget {
         const SizedBox(height: 14),
         const MailSection(),
         const SizedBox(height: 22),
-        const CustomRoundedButton(
-          text: "Send Email",
-        )
+        const CustomRoundedButton(text: "Send Email")
       ],
     );
   }

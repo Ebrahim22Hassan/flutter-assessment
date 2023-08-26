@@ -22,9 +22,7 @@ class EditProfileViewBody extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 34),
           child: EditFormFieldsSection(),
         ),
-        const CustomRoundedButton(
-          text: "Done",
-        ),
+        const CustomRoundedButton(text: "Done"),
       ],
     );
   }

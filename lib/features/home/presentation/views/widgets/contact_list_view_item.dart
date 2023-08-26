@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../../constants.dart';
+import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/assets.dart';
 import 'delete_alert_dialog.dart';
 
@@ -32,7 +34,9 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
             extentRatio: 0.35,
             children: [
               SlidableAction(
-                onPressed: (context) {},
+                onPressed: (context) {
+                  GoRouter.of(context).push(AppRouter.kEditProfileView);
+                },
                 icon: FontAwesomeIcons.penToSquare,
                 foregroundColor: const Color(0xffF2C94C),
                 backgroundColor: kPrimaryColorWithOpacity,
@@ -66,6 +70,7 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
               setState(() {
                 isSelected = !isSelected;
               });
+              GoRouter.of(context).push(AppRouter.kProfileView);
             },
             leading: const CircleAvatar(
               backgroundImage: AssetImage(AssetsData.testImage),
