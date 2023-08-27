@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_assessment/features/home/data/models/contact_model.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -75,10 +76,23 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
                 isSelected = !isSelected;
               });
             },
-            leading: CircleAvatar(
-              backgroundImage: NetworkImage(widget.contactModel.avatar!),
-              radius: 24,
-              backgroundColor: Colors.transparent,
+            leading: CachedNetworkImage(
+              placeholder: (context, url) => const SizedBox(
+                height: 14,
+                width: 14,
+                child: CircularProgressIndicator(
+                  color: kPrimaryColor,
+                ),
+              ),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+              imageUrl: widget.contactModel.avatar!,
+              imageBuilder: (context, imageProvider) {
+                return CircleAvatar(
+                  backgroundImage: imageProvider,
+                  backgroundColor: Colors.transparent,
+                  radius: 24,
+                );
+              },
             ),
             selected: isSelected,
             title: Padding(

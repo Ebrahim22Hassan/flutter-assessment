@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_assessment/constants.dart';
 import 'package:flutter_assessment/features/home/presentation/manager/contacts_cubit/contacts_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,7 +24,10 @@ class ContactsListView extends StatelessWidget {
         } else if (state is ContactsFailureState) {
           return Text(state.errMessage);
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(
+              child: CircularProgressIndicator(
+            color: kPrimaryColor,
+          ));
         }
       },
     );
