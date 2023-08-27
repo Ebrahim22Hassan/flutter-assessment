@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_assessment/features/home/data/models/contact_model.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,7 +11,9 @@ import '../../../../../core/utils/assets.dart';
 import 'delete_alert_dialog.dart';
 
 class ContactsListViewItem extends StatefulWidget {
-  const ContactsListViewItem({Key? key}) : super(key: key);
+  const ContactsListViewItem({Key? key, required this.contactModel})
+      : super(key: key);
+  final ContactModel contactModel;
 
   @override
   State<ContactsListViewItem> createState() => _ContactsListViewItemState();
@@ -72,8 +75,8 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
                 isSelected = !isSelected;
               });
             },
-            leading: const CircleAvatar(
-              backgroundImage: AssetImage(AssetsData.testImage),
+            leading: CircleAvatar(
+              backgroundImage: NetworkImage(widget.contactModel.avatar!),
               radius: 24,
               backgroundColor: Colors.transparent,
             ),
@@ -83,7 +86,7 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
               child: Row(
                 children: [
                   Text(
-                    "Abo Treka",
+                    "${widget.contactModel.firstName} ${widget.contactModel.lastName!}",
                     style: GoogleFonts.raleway(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -97,7 +100,7 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
             subtitle: Padding(
               padding: const EdgeInsets.only(bottom: 8.0, left: 16),
               child: Text(
-                "abotreka@gmail.com",
+                widget.contactModel.email,
                 style: GoogleFonts.lato(
                     fontSize: 12,
                     fontWeight: FontWeight.w400,

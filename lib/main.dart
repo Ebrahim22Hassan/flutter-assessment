@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => ContactsCubit(
             getIt.get<HomeRepoImplementation>(),
-          ),
+          )..fetchContacts(),
         ),
       ],
       child: MaterialApp.router(
