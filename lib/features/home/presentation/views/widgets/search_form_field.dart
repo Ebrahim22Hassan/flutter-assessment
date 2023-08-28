@@ -4,13 +4,17 @@ import 'package:flutter_assessment/constants.dart';
 import '../../../../../core/utils/assets.dart';
 
 class SearchFormField extends StatelessWidget {
-  const SearchFormField({Key? key}) : super(key: key);
+  const SearchFormField({Key? key, required this.textEditingController})
+      : super(key: key);
+  final TextEditingController textEditingController;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 16, bottom: 26, left: 20, right: 20),
       child: TextFormField(
+        controller: textEditingController,
+        cursorColor: kPrimaryColor,
         decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,

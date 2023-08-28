@@ -16,6 +16,7 @@ class EditProfileFormField extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         TextFormField(
+          cursorColor: kPrimaryColor,
           decoration: InputDecoration(
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
