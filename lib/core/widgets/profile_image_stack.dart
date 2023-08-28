@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assessment/constants.dart';
-import 'package:flutter_assessment/core/utils/assets.dart';
+import 'package:flutter_assessment/features/home/data/models/contact_model.dart';
 
 class ProfileImageStack extends StatelessWidget {
   const ProfileImageStack({
     super.key,
     required this.child,
+    required this.contactModel,
   });
+  final ContactModel contactModel;
   final Widget child;
   @override
   Widget build(BuildContext context) {
@@ -17,15 +19,15 @@ class ProfileImageStack extends StatelessWidget {
           children: [
             Stack(
               alignment: AlignmentDirectional.center,
-              children: const [
-                CircleAvatar(
+              children: [
+                const CircleAvatar(
                   backgroundColor: kPrimaryColor,
                   radius: 60,
                 ),
                 CircleAvatar(
                   backgroundColor: kPrimaryColor,
                   radius: 55,
-                  backgroundImage: AssetImage(AssetsData.testImage),
+                  backgroundImage: NetworkImage(contactModel.avatar!),
                 ),
               ],
             ),

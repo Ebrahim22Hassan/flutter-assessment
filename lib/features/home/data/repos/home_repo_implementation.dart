@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_assessment/core/utils/api_service.dart';
 import 'package:flutter_assessment/features/home/data/models/contact_model.dart';
+import '../../../../constants.dart';
 import '../../../../core/errors/failure.dart';
 import 'home_repo.dart';
 
@@ -12,7 +13,7 @@ class HomeRepoImplementation implements HomeRepo {
   @override
   Future<Either<Failure, List<ContactModel>>> fetchContacts() async {
     try {
-      var data = await apiService.get(endPoint: "/users?page=1");
+      var data = await apiService.get(endPoint: getContactsEndPoint);
 
       List<ContactModel> contacts = [];
       for (var item in data['data']) {

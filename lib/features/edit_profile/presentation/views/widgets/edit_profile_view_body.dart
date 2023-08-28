@@ -13,11 +13,11 @@ class EditProfileViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 45, bottom: 30),
-          child:
-              ProfileImageStack(child: SvgPicture.asset(AssetsData.editIcon)),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.only(top: 45, bottom: 30),
+        //   child:
+        //       ProfileImageStack(child: SvgPicture.asset(AssetsData.editIcon)),
+        // ),
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 34),
           child: EditFormFieldsSection(),

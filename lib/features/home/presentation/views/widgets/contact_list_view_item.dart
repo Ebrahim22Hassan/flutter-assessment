@@ -71,7 +71,7 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
             ],
           ),
           child: ListTile(
-            onTap: () {
+            onLongPress: () {
               setState(() {
                 isSelected = !isSelected;
               });
@@ -123,7 +123,10 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
             ),
             trailing: GestureDetector(
                 onTap: () {
-                  GoRouter.of(context).push(AppRouter.kProfileView);
+                  GoRouter.of(context).push(
+                    AppRouter.kProfileView,
+                    extra: widget.contactModel,
+                  );
                 },
                 child: SvgPicture.asset(
                   AssetsData.messageIcon,
