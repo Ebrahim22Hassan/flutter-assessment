@@ -3,11 +3,13 @@ import 'package:flutter_assessment/features/home/presentation/manager/contacts_c
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'constants.dart';
 import 'core/utils/app_router.dart';
+import 'core/utils/bloc_observer.dart';
 import 'core/utils/service_locator.dart';
 import 'features/home/data/repos/home_repo_implementation.dart';
 
 void main() {
   setupServiceLocator();
+  Bloc.observer = SimpleBlocObserver();
   runApp(const MyApp());
 }
 
