@@ -4,7 +4,6 @@ import 'package:flutter_assessment/core/utils/api_service.dart';
 import 'package:flutter_assessment/features/home/data/models/contact_model.dart';
 import '../../../../constants.dart';
 import '../../../../core/errors/failure.dart';
-import '../../../../core/utils/save_data_function.dart';
 import 'home_repo.dart';
 
 class HomeRepoImplementation implements HomeRepo {
@@ -20,9 +19,6 @@ class HomeRepoImplementation implements HomeRepo {
       for (var item in data['data']) {
         contacts.add(ContactModel.fromJson(item));
       }
-      // save data locally
-      saveContactsData(contacts);
-
       return right(contacts);
     } on Exception catch (e) {
       if (e is DioException) {

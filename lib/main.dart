@@ -10,12 +10,13 @@ import 'core/utils/service_locator.dart';
 import 'features/home/data/repos/home_repo_implementation.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
   Bloc.observer = SimpleBlocObserver();
 
   await Hive.initFlutter();
   Hive.registerAdapter(ContactModelAdapter());
-  await Hive.openBox(kContactBox);
+  await Hive.openBox<ContactModel>(kContactBox);
 
   runApp(const MyApp());
 }
