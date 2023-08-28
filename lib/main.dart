@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_assessment/features/home/data/models/contact_model.dart';
 import 'package:flutter_assessment/features/home/presentation/manager/contacts_cubit/contacts_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'constants.dart';
 import 'core/utils/app_router.dart';
 import 'core/utils/bloc_observer.dart';
@@ -12,10 +12,12 @@ import 'features/home/data/repos/home_repo_implementation.dart';
 void main() async {
   setupServiceLocator();
   Bloc.observer = SimpleBlocObserver();
-  runApp(const MyApp());
 
+  await Hive.initFlutter();
   Hive.registerAdapter(ContactModelAdapter());
   await Hive.openBox(kContactBox);
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
