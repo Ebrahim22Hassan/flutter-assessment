@@ -13,7 +13,7 @@ class HomeView extends StatelessWidget {
       appBar: CustomAppBar(
           title: 'My Contacts', actionIcon: Image.asset(AssetsData.unionIcon)),
       body: const HomeViewBody(),
-      floatingActionButton: const AppFAB(),
+      floatingActionButton: AppFAB(),
     );
   }
 }
