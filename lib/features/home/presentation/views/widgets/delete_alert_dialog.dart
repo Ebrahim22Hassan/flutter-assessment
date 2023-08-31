@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assessment/constants.dart';
 import 'package:flutter_assessment/core/widgets/custom_text_button.dart';
+import 'package:flutter_assessment/features/home/presentation/manager/contacts_cubit/contacts_cubit.dart';
+import 'package:flutter_assessment/features/home/presentation/manager/delete_contact_cubit/delete_contact_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class DeleteAlertDialog extends StatelessWidget {
   const DeleteAlertDialog({
     super.key,
+    required this.index,
   });
+
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +39,12 @@ class DeleteAlertDialog extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 CustomTextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    BlocProvider.of<DeleteContactCubit>(context)
+                        .deleteContact(index);
+                    BlocProvider.of<ContactsCubit>(context).fetchContacts();
+                    Navigator.pop(context);
+                  },
                   text: 'Yes',
                   textColor: Colors.red,
                 ),

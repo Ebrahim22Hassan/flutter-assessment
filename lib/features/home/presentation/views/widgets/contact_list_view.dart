@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../data/models/contact_model.dart';
+import '../../../domain/entities/contact_entity.dart';
 import 'contact_list_view_item.dart';
 
 class ContactsListView extends StatelessWidget {
@@ -10,8 +10,8 @@ class ContactsListView extends StatelessWidget {
       required this.contacts})
       : super(key: key);
   final bool isSearching;
-  final List<ContactModel> contactsFiltered;
-  final List<ContactModel> contacts;
+  final List<ContactEntity> contactsFiltered;
+  final List<ContactEntity> contacts;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,8 @@ class ContactsListView extends StatelessWidget {
           isSearching == true ? contactsFiltered.length : contacts.length,
       itemBuilder: (context, index) {
         return ContactsListViewItem(
-          contactModel:
+          index: index,
+          contactEntity:
               isSearching == true ? contactsFiltered[index] : contacts[index],
         );
       },

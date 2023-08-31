@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_assessment/features/home/data/models/contact_model.dart';
+import 'package:flutter_assessment/features/home/domain/entities/contact_entity.dart';
 import 'package:flutter_assessment/features/home/presentation/manager/contacts_cubit/contacts_cubit.dart';
+import 'package:flutter_assessment/features/home/presentation/manager/delete_contact_cubit/delete_contact_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'constants.dart';
@@ -8,6 +9,7 @@ import 'core/utils/app_router.dart';
 import 'core/utils/bloc_observer.dart';
 import 'core/utils/service_locator.dart';
 import 'features/home/data/repos/home_repo_implementation.dart';
+import 'features/home/domain/use_cases/fetch_contacts_use_case.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,8 +17,8 @@ void main() async {
   Bloc.observer = SimpleBlocObserver();
 
   await Hive.initFlutter();
-  Hive.registerAdapter(ContactModelAdapter());
-  await Hive.openBox<ContactModel>(kContactBox);
+  Hive.registerAdapter(ContactEntityAdapter());
+  await Hive.openBox<ContactEntity>(kContactsBox);
 
   runApp(const MyApp());
 }
@@ -30,8 +32,13 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => ContactsCubit(
-            getIt.get<HomeRepoImplementation>(),
+            FetchContactsUseCase(
+              getIt.get<HomeRepoImplementation>(),
+            ),
           )..fetchContacts(),
+        ),
+        BlocProvider(
+          create: (context) => DeleteContactCubit(),
         ),
       ],
       child: MaterialApp.router(

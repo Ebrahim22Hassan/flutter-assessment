@@ -1,24 +1,28 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_assessment/core/utils/api_service.dart';
-import 'package:flutter_assessment/features/home/data/models/contact_model.dart';
-import '../../../../constants.dart';
+import 'package:flutter_assessment/features/home/domain/entities/contact_entity.dart';
 import '../../../../core/errors/failure.dart';
-import 'home_repo.dart';
+import '../../domain/repos/home_repo.dart';
+import '../data_sources/home_local_data_source.dart';
+import '../data_sources/home_remote_data_source.dart';
 
 class HomeRepoImplementation implements HomeRepo {
-  final ApiService apiService;
+  final HomeRemoteDataSource homeRemoteDataSource;
+  final HomeLocalDataSource homeLocalDataSource;
 
-  HomeRepoImplementation(this.apiService);
+  HomeRepoImplementation(
+      {required this.homeRemoteDataSource, required this.homeLocalDataSource});
+
   @override
-  Future<Either<Failure, List<ContactModel>>> fetchContacts() async {
+  Future<Either<Failure, List<ContactEntity>>> fetchContacts() async {
     try {
-      var data = await apiService.get(endPoint: getContactsEndPoint);
-
-      List<ContactModel> contacts = [];
-      for (var item in data['data']) {
-        contacts.add(ContactModel.fromJson(item));
+      List<ContactEntity> contacts;
+      contacts = homeLocalDataSource.fetchContacts();
+      if (contacts.isNotEmpty) {
+        return right(contacts);
       }
+      contacts = await homeRemoteDataSource.fetchContacts();
+
       return right(contacts);
     } on Exception catch (e) {
       if (e is DioException) {

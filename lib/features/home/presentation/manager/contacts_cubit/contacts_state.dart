@@ -16,7 +16,7 @@ class ContactsFailureState extends ContactsState {
 }
 
 class ContactsSuccessState extends ContactsState {
-  final List<ContactModel> contacts;
+  final List<ContactEntity> contacts;
 
   ContactsSuccessState(this.contacts);
 }

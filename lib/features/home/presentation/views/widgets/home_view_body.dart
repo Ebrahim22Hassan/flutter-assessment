@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assessment/constants.dart';
-import 'package:flutter_assessment/features/home/data/models/contact_model.dart';
+import 'package:flutter_assessment/features/home/domain/entities/contact_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../manager/contacts_cubit/contacts_cubit.dart';
 import 'buttons_section.dart';
@@ -16,8 +16,8 @@ class HomeViewBody extends StatefulWidget {
 }
 
 class _HomeViewBodyState extends State<HomeViewBody> {
-  List<ContactModel> contacts = [];
-  List<ContactModel> contactsFiltered = [];
+  List<ContactEntity> contacts = [];
+  List<ContactEntity> contactsFiltered = [];
   TextEditingController searchController = TextEditingController();
 
   @override
@@ -29,7 +29,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   }
 
   void filterContacts() {
-    List<ContactModel> contactsList = [];
+    List<ContactEntity> contactsList = [];
     contactsList.addAll(contacts);
     if (searchController.text.isNotEmpty) {
       contactsList.retainWhere((element) {

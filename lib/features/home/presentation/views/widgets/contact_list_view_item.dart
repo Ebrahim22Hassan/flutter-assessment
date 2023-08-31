@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_assessment/features/home/data/models/contact_model.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -9,12 +8,15 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/assets.dart';
+import '../../../domain/entities/contact_entity.dart';
 import 'delete_alert_dialog.dart';
 
 class ContactsListViewItem extends StatefulWidget {
-  const ContactsListViewItem({Key? key, required this.contactModel})
+  const ContactsListViewItem(
+      {Key? key, required this.contactEntity, required this.index})
       : super(key: key);
-  final ContactModel contactModel;
+  final ContactEntity contactEntity;
+  final int index;
 
   @override
   State<ContactsListViewItem> createState() => _ContactsListViewItemState();
@@ -60,7 +62,9 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
                   showDialog(
                     context: context,
                     builder: (context) {
-                      return const DeleteAlertDialog();
+                      return DeleteAlertDialog(
+                        index: widget.index,
+                      );
                     },
                   );
                 },
@@ -85,7 +89,8 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
                 ),
               ),
               errorWidget: (context, url, error) => const Icon(Icons.error),
-              imageUrl: widget.contactModel.avatar!,
+              imageUrl: widget.contactEntity.avatar ??
+                  "https://media.licdn.com/dms/image/C4E0BAQFNjO3GokqjtA/company-logo_200_200/0/1644920245507?e=2147483647&v=beta&t=upIUcV0KYgi8W3r3jSFtVKNf2iToCwfepNdS4rMkKjY",
               imageBuilder: (context, imageProvider) {
                 return CircleAvatar(
                   backgroundImage: imageProvider,
@@ -100,7 +105,7 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
               child: Row(
                 children: [
                   Text(
-                    "${widget.contactModel.firstName} ${widget.contactModel.lastName!}",
+                    "${widget.contactEntity.firstName} ${widget.contactEntity.lastName ?? ""}",
                     style: GoogleFonts.raleway(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
@@ -114,7 +119,7 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
             subtitle: Padding(
               padding: const EdgeInsets.only(bottom: 8.0, left: 16),
               child: Text(
-                widget.contactModel.email,
+                widget.contactEntity.email,
                 style: GoogleFonts.lato(
                     fontSize: 12,
                     fontWeight: FontWeight.w400,
@@ -125,7 +130,7 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
                 onTap: () {
                   GoRouter.of(context).push(
                     AppRouter.kProfileView,
-                    extra: widget.contactModel,
+                    extra: widget.contactEntity,
                   );
                 },
                 child: SvgPicture.asset(

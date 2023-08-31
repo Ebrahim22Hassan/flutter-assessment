@@ -33,7 +33,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         Container(
           margin: const EdgeInsets.only(right: 21),
           width: 20,
-          child: GestureDetector(onTap: () {}, child: actionIcon),
+          child: actionIcon,
         ),
       ],
       leading: leadingIcon,

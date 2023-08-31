@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_assessment/core/utils/assets.dart';
+import 'package:flutter_assessment/features/home/presentation/views/widgets/refresh_icon.dart';
 import 'widgets/app_fab.dart';
 import 'widgets/home_view_body.dart';
 import '../../../../core/widgets/custom_app_bar.dart';
@@ -9,10 +9,12 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       appBar: CustomAppBar(
-          title: 'My Contacts', actionIcon: Image.asset(AssetsData.unionIcon)),
-      body: const HomeViewBody(),
+        title: 'My Contacts',
+        actionIcon: RefreshIcon(),
+      ),
+      body: HomeViewBody(),
       floatingActionButton: AppFAB(),
     );
   }
