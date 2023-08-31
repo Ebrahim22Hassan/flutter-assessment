@@ -1,13 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_assessment/features/profile/presentation/views/profile_view.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../../constants.dart';
-import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/assets.dart';
+import '../../../../edit_profile/presentation/views/edit_profile_view.dart';
 import '../../../domain/entities/contact_entity.dart';
 import 'delete_alert_dialog.dart';
 
@@ -42,7 +42,16 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
             children: [
               SlidableAction(
                 onPressed: (context) {
-                  GoRouter.of(context).push(AppRouter.kEditProfileView);
+                  // GoRouter.of(context).push(
+                  //   AppRouter.kEditProfileView,
+                  // );
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) {
+                      return EditProfileView(
+                          index: widget.index,
+                          contactEntity: widget.contactEntity);
+                    },
+                  ));
                 },
                 icon: FontAwesomeIcons.penToSquare,
                 foregroundColor: const Color(0xffF2C94C),
@@ -89,8 +98,7 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
                 ),
               ),
               errorWidget: (context, url, error) => const Icon(Icons.error),
-              imageUrl: widget.contactEntity.avatar ??
-                  "https://media.licdn.com/dms/image/C4E0BAQFNjO3GokqjtA/company-logo_200_200/0/1644920245507?e=2147483647&v=beta&t=upIUcV0KYgi8W3r3jSFtVKNf2iToCwfepNdS4rMkKjY",
+              imageUrl: widget.contactEntity.avatar ?? kRFImage,
               imageBuilder: (context, imageProvider) {
                 return CircleAvatar(
                   backgroundImage: imageProvider,
@@ -128,10 +136,17 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
             ),
             trailing: GestureDetector(
                 onTap: () {
-                  GoRouter.of(context).push(
-                    AppRouter.kProfileView,
-                    extra: widget.contactEntity,
-                  );
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) {
+                      return ProfileView(
+                          contactEntity: widget.contactEntity,
+                          index: widget.index);
+                    },
+                  ));
+                  // GoRouter.of(context).push(
+                  //   AppRouter.kProfileView,
+                  //   extra: widget.contactEntity,
+                  // );
                 },
                 child: SvgPicture.asset(
                   AssetsData.messageIcon,

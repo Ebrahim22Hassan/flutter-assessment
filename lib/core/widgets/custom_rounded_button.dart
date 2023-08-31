@@ -6,8 +6,10 @@ class CustomRoundedButton extends StatelessWidget {
   const CustomRoundedButton({
     super.key,
     required this.text,
+    this.onPressed,
   });
   final String text;
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,7 +24,7 @@ class CustomRoundedButton extends StatelessWidget {
                   borderRadius: BorderRadius.circular(100)),
               minimumSize: const Size.fromHeight(50),
             ),
-            onPressed: () {},
+            onPressed: onPressed,
             child: Text(
               text,
               style: Styles.textStyle16(Colors.white),

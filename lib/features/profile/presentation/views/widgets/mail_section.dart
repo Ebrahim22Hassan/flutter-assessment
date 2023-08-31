@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_assessment/core/utils/assets.dart';
-
+import 'package:flutter_assessment/features/home/domain/entities/contact_entity.dart';
 import '../../../../../core/utils/styles.dart';
-import '../../../../home/data/models/contact_model.dart';
 
 class MailSection extends StatelessWidget {
   const MailSection({
     super.key,
-    required this.contactModel,
+    required this.contactEntity,
   });
-  final ContactModel contactModel;
+  final ContactEntity contactEntity;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,7 +22,7 @@ class MailSection extends StatelessWidget {
             child: Image.asset(AssetsData.mailIcon),
           ),
           Text(
-            contactModel.email,
+            contactEntity.email,
             style: Styles.textStyle14(FontWeight.normal),
           )
         ],

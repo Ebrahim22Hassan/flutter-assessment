@@ -3,8 +3,16 @@ import 'package:flutter_assessment/constants.dart';
 import 'package:flutter_assessment/core/utils/styles.dart';
 
 class EditProfileFormField extends StatelessWidget {
-  const EditProfileFormField({Key? key, required this.label}) : super(key: key);
+  const EditProfileFormField({
+    Key? key,
+    required this.label,
+    required this.hint,
+    this.onChanged,
+  }) : super(key: key);
   final String label;
+  final String hint;
+  final void Function(String)? onChanged;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,8 +24,10 @@ class EditProfileFormField extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         TextFormField(
+          onChanged: onChanged,
           cursorColor: kPrimaryColor,
           decoration: InputDecoration(
+            hintText: hint,
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
             enabledBorder: buildOutlineInputBorder(kPrimaryColor),

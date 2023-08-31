@@ -3,12 +3,12 @@ import '../../../domain/entities/contact_entity.dart';
 import 'contact_list_view_item.dart';
 
 class ContactsListView extends StatelessWidget {
-  const ContactsListView(
-      {Key? key,
-      required this.isSearching,
-      required this.contactsFiltered,
-      required this.contacts})
-      : super(key: key);
+  const ContactsListView({
+    Key? key,
+    required this.isSearching,
+    required this.contactsFiltered,
+    required this.contacts,
+  }) : super(key: key);
   final bool isSearching;
   final List<ContactEntity> contactsFiltered;
   final List<ContactEntity> contacts;
