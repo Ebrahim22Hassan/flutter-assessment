@@ -5,7 +5,7 @@ import 'package:flutter_assessment/core/utils/styles.dart';
 import 'package:flutter_assessment/core/widgets/custom_text_button.dart';
 import 'package:flutter_assessment/features/edit_profile/presentation/views/edit_profile_view.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:url_launcher/url_launcher.dart';
+import '../../../../../core/function/send_email.dart';
 import '../../../../home/domain/entities/contact_entity.dart';
 import 'mail_section.dart';
 import '../../../../../core/widgets/profile_image_stack.dart';
@@ -29,9 +29,6 @@ class ProfileViewBody extends StatelessWidget {
             children: [
               CustomTextButton(
                 onPressed: () {
-                  // GoRouter.of(context).push(
-                  //   AppRouter.kEditProfileView,
-                  // );
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) {
                       return EditProfileView(
@@ -59,18 +56,7 @@ class ProfileViewBody extends StatelessWidget {
         CustomRoundedButton(
           text: "Send Email",
           onPressed: () async {
-            final Uri params = Uri(
-              scheme: 'mailto',
-              path: contactEntity.email,
-              query: 'subject=Hello&body=Hi, I hope you are doing well!',
-            );
-            //final String url = params.toString();
-
-            if (await canLaunchUrl(params)) {
-              await launchUrl(params);
-            } else {
-              throw 'Could not launch email';
-            }
+            await sendEmail(contactEntity.email);
           },
         ),
       ],

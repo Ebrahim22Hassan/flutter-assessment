@@ -7,9 +7,11 @@ class CustomRoundedButton extends StatelessWidget {
     super.key,
     required this.text,
     this.onPressed,
+    this.isLoading,
   });
   final String text;
   final void Function()? onPressed;
+  final bool? isLoading;
   @override
   Widget build(BuildContext context) {
     return Padding(
