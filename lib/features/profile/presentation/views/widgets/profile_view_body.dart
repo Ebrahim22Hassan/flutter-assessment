@@ -55,7 +55,10 @@ class ProfileViewBody extends StatelessWidget {
         const SizedBox(height: 14),
         MailSection(contactEntity: contactEntity),
         const SizedBox(height: 22),
-        const CustomRoundedButton(text: "Send Email"),
+        CustomRoundedButton(
+          text: "Send Email",
+          onPressed: () {},
+        ),
       ],
     );
   }

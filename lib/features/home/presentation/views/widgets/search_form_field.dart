@@ -28,8 +28,10 @@ class SearchFormField extends StatelessWidget {
               const EdgeInsets.symmetric(horizontal: 24, vertical: 13),
           suffixIcon: Container(
             margin: const EdgeInsets.only(right: 20),
-            width: 18,
             child: Image.asset(AssetsData.searchIcon),
+          ),
+          suffixIconConstraints: const BoxConstraints(
+            maxHeight: 18,
           ),
           enabledBorder: buildOutlineInputBorder(Colors.transparent),
           focusedBorder: buildOutlineInputBorder(Colors.grey[300]),
