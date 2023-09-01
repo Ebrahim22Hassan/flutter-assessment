@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_assessment/constants.dart';
 import 'package:flutter_assessment/features/home/domain/entities/contact_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/utils/list_type.dart';
 import '../../manager/contacts_cubit/contacts_cubit.dart';
 import 'buttons_section.dart';
 import 'contact_list_view.dart';
@@ -19,6 +20,13 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   List<ContactEntity> contacts = [];
   List<ContactEntity> contactsFiltered = [];
   TextEditingController searchController = TextEditingController();
+
+  ListType selectedListType = ListType.all;
+  _onListTypeSelected(ListType type) {
+    setState(() {
+      selectedListType = type;
+    });
+  }
 
   @override
   void initState() {
@@ -62,9 +70,11 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 contacts = state.contacts;
                 return Column(
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: 37, top: 20),
-                      child: ButtonsSection(),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 37, top: 20),
+                      child: ButtonsSection(
+                          selectedListType: selectedListType,
+                          onSelected: _onListTypeSelected),
                     ),
                     state.contacts.isNotEmpty
                         ? const SizedBox(height: 32)

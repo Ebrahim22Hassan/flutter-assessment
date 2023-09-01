@@ -20,3 +20,9 @@ class ContactsSuccessState extends ContactsState {
 
   ContactsSuccessState(this.contacts);
 }
+
+class FavoriteSuccessState extends ContactsState {
+  final ContactEntity contact;
+
+  FavoriteSuccessState(this.contact);
+}

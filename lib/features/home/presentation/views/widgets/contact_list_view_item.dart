@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_assessment/core/function/favorite_modal_bottom_sheet.dart';
 import 'package:flutter_assessment/features/profile/presentation/views/profile_view.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../../constants.dart';
+import '../../../../../core/function/toggle_favorite_contact.dart';
 import '../../../../../core/utils/assets.dart';
 import '../../../../edit_profile/presentation/views/edit_profile_view.dart';
 import '../../../domain/entities/contact_entity.dart';
@@ -23,7 +25,7 @@ class ContactsListViewItem extends StatefulWidget {
 }
 
 class _ContactsListViewItemState extends State<ContactsListViewItem> {
-  bool isSelected = false;
+  bool isLongPressed = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
         padding: const EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: isSelected ? kPrimaryColorWithOpacity : Colors.transparent,
+          color: isLongPressed ? kPrimaryColorWithOpacity : Colors.transparent,
         ),
         child: Slidable(
           endActionPane: ActionPane(
@@ -42,9 +44,6 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
             children: [
               SlidableAction(
                 onPressed: (context) {
-                  // GoRouter.of(context).push(
-                  //   AppRouter.kEditProfileView,
-                  // );
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) {
                       return EditProfileView(
@@ -85,9 +84,21 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
           ),
           child: ListTile(
             onLongPress: () {
-              setState(() {
-                isSelected = !isSelected;
-              });
+              setState(() => isLongPressed = true);
+              favoriteModalSheet(
+                context: context,
+                onTap: () {
+                  toggleFavoriteContact(context, widget.contactEntity);
+                  Navigator.pop(context);
+                  Future.delayed(
+                    const Duration(milliseconds: 500),
+                    () {
+                      setState(() => isLongPressed = false);
+                    },
+                  );
+                },
+                contactEntity: widget.contactEntity,
+              );
             },
             leading: CachedNetworkImage(
               placeholder: (context, url) => const SizedBox(
@@ -107,7 +118,7 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
                 );
               },
             ),
-            selected: isSelected,
+            selected: isLongPressed,
             title: Padding(
               padding: const EdgeInsets.only(bottom: 8.0, left: 16),
               child: Row(
@@ -120,7 +131,9 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
                         color: Colors.black),
                   ),
                   const SizedBox(width: 4),
-                  SvgPicture.asset(AssetsData.starIcon),
+                  widget.contactEntity.isFavorite!
+                      ? SvgPicture.asset(AssetsData.starIcon)
+                      : Container(),
                 ],
               ),
             ),

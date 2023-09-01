@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+
 part 'contact_entity.g.dart';
 
 @HiveType(typeId: 0)
@@ -13,11 +14,14 @@ class ContactEntity {
   String? lastName;
   @HiveField(4)
   final String? avatar;
+  @HiveField(5)
+  bool? isFavorite;
 
   ContactEntity(
       {this.id,
       required this.email,
       required this.firstName,
       required this.lastName,
-      this.avatar});
+      this.avatar,
+      this.isFavorite = false});
 }

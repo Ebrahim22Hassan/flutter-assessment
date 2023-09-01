@@ -69,6 +69,7 @@ class _AddContactFormState extends State<AddContactForm> {
                       firstName: firstName!,
                       email: email!,
                       lastName: secondName!,
+                      isFavorite: false,
                     );
 
                     BlocProvider.of<AddContactsCubit>(context)

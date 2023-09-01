@@ -30,4 +30,29 @@ class ContactsCubit extends Cubit<ContactsState> {
       emit(ContactsSuccessState(contacts));
     });
   }
+
+  Future<void> showFavoriteContacts() async {
+    emit(ContactsLoadingState());
+    var result = await fetchContactsUseCase.showFavoriteContacts();
+
+    result.fold((failure) {
+      emit(ContactsFailureState(failure.errorMessage));
+    }, (contacts) {
+      emit(ContactsSuccessState(contacts));
+    });
+  }
+
+  void toggleFavoriteContact(ContactEntity contact) async {
+    contact.isFavorite = !contact.isFavorite!;
+    emit(FavoriteSuccessState(contact));
+
+    emit(ContactsLoadingState());
+    var result = await fetchContactsUseCase.fetchOnlyLocalContacts();
+
+    result.fold((failure) {
+      emit(ContactsFailureState(failure.errorMessage));
+    }, (contacts) {
+      emit(ContactsSuccessState(contacts));
+    });
+  }
 }

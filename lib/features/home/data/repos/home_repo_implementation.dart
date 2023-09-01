@@ -46,4 +46,22 @@ class HomeRepoImplementation implements HomeRepo {
       return left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, List<ContactEntity>>> showFavoriteContacts() async {
+    try {
+      List<ContactEntity> contacts;
+      contacts = homeLocalDataSource
+          .fetchContacts()
+          .where((element) => element.isFavorite ?? true)
+          .toList();
+
+      return right(contacts);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
 }

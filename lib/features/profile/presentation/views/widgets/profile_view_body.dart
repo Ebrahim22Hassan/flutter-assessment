@@ -44,7 +44,9 @@ class ProfileViewBody extends StatelessWidget {
         ),
         ProfileImageStack(
             contactEntity: contactEntity,
-            child: SvgPicture.asset(AssetsData.starIcon)),
+            child: contactEntity.isFavorite!
+                ? SvgPicture.asset(AssetsData.starIcon)
+                : Container()),
         const SizedBox(height: 14),
         Text(
           "${contactEntity.firstName} ${contactEntity.lastName!}",

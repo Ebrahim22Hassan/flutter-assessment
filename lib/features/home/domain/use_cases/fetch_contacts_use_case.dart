@@ -19,4 +19,10 @@ class FetchContactsUseCase extends UseCase<List<ContactEntity>, NoParam> {
       [NoParam? param]) async {
     return await homeRepo.fetchOnlyLocalContacts();
   }
+
+  @override
+  Future<Either<Failure, List<ContactEntity>>> showFavoriteContacts(
+      [NoParam? param]) async {
+    return await homeRepo.showFavoriteContacts();
+  }
 }
