@@ -42,7 +42,8 @@ class DeleteAlertDialog extends StatelessWidget {
                   onPressed: () {
                     BlocProvider.of<DeleteContactCubit>(context)
                         .deleteContact(index);
-                    BlocProvider.of<ContactsCubit>(context).fetchContacts();
+                    BlocProvider.of<ContactsCubit>(context)
+                        .fetchOnlyLocalContacts();
                     Navigator.pop(context);
                   },
                   text: 'Yes',

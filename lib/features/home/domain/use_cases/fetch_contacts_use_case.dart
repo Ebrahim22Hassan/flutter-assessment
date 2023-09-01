@@ -13,4 +13,10 @@ class FetchContactsUseCase extends UseCase<List<ContactEntity>, NoParam> {
   Future<Either<Failure, List<ContactEntity>>> call([NoParam? param]) async {
     return await homeRepo.fetchContacts();
   }
+
+  @override
+  Future<Either<Failure, List<ContactEntity>>> fetchOnlyLocalContacts(
+      [NoParam? param]) async {
+    return await homeRepo.fetchOnlyLocalContacts();
+  }
 }

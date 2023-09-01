@@ -31,4 +31,19 @@ class HomeRepoImplementation implements HomeRepo {
       return left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, List<ContactEntity>>> fetchOnlyLocalContacts() async {
+    try {
+      List<ContactEntity> contacts;
+      contacts = homeLocalDataSource.fetchContacts();
+
+      return right(contacts);
+    } on Exception catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(e.toString()));
+    }
+  }
 }

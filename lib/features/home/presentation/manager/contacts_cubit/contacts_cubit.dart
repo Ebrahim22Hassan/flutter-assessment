@@ -19,4 +19,15 @@ class ContactsCubit extends Cubit<ContactsState> {
       emit(ContactsSuccessState(contacts));
     });
   }
+
+  Future<void> fetchOnlyLocalContacts() async {
+    emit(ContactsLoadingState());
+    var result = await fetchContactsUseCase.fetchOnlyLocalContacts();
+
+    result.fold((failure) {
+      emit(ContactsFailureState(failure.errorMessage));
+    }, (contacts) {
+      emit(ContactsSuccessState(contacts));
+    });
+  }
 }

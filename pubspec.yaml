@@ -49,6 +49,7 @@ dependencies:
   hive:
   hive_flutter:
   url_launcher: ^6.1.11
+  image_picker: ^1.0.4
 
 dev_dependencies:
   hive_generator:

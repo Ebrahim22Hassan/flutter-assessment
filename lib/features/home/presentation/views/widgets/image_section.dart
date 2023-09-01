@@ -22,7 +22,7 @@ class ImageSection extends StatelessWidget {
           child: Text(
             "No list of contact here, add contact now",
             textAlign: TextAlign.center,
-            style: Styles.textStyle14(FontWeight.w600),
+            style: Styles.textStyle14(FontWeight.w500),
           ),
         ),
       ],
