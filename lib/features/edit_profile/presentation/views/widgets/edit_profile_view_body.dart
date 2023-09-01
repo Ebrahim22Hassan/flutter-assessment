@@ -90,6 +90,7 @@ class _EditProfileViewBodyState extends State<EditProfileViewBody> {
       lastName: lastName,
       avatar: widget.contactEntity.avatar,
       id: widget.contactEntity.id,
+      isFavorite: widget.contactEntity.isFavorite,
     );
     BlocProvider.of<EditProfileCubit>(context)
         .editContact(widget.index, contact);
