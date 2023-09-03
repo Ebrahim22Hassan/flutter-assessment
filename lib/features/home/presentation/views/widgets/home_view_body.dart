@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_assessment/constants.dart';
 import 'package:flutter_assessment/features/home/domain/entities/contact_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/function/filter_contacts.dart';
 import '../../../../../core/utils/list_type.dart';
 import '../../manager/contacts_cubit/contacts_cubit.dart';
 import 'buttons_section.dart';
@@ -32,29 +33,12 @@ class _HomeViewBodyState extends State<HomeViewBody> {
   void initState() {
     super.initState();
     searchController.addListener(() {
-      filterContacts();
+      List<ContactEntity> filteredList =
+          filterContacts(contacts, searchController);
+      setState(() {
+        contactsFiltered = filteredList;
+      });
     });
-  }
-
-  void filterContacts() {
-    List<ContactEntity> contactsList = [];
-    contactsList.addAll(contacts);
-    if (searchController.text.isNotEmpty) {
-      contactsList.retainWhere((element) {
-        String searchTerm = searchController.text.toLowerCase();
-        String firstName = element.firstName.toLowerCase();
-        String lastName = element.lastName!.toLowerCase();
-
-        return firstName.contains(searchTerm) || lastName.contains(searchTerm);
-      });
-      setState(() {
-        contactsFiltered = contactsList;
-      });
-    } else {
-      setState(() {
-        contactsFiltered = contacts;
-      });
-    }
   }
 
   @override

@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_assessment/core/function/favorite_modal_bottom_sheet.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -10,9 +9,10 @@ import '../../../../../constants.dart';
 import '../../../../../core/function/toggle_favorite_contact.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/assets.dart';
-import '../../../../edit_profile/presentation/views/edit_profile_view.dart';
 import '../../../domain/entities/contact_entity.dart';
+import 'avatar_widget.dart';
 import 'delete_alert_dialog.dart';
+import 'name_widget.dart';
 
 class ContactsListViewItem extends StatefulWidget {
   const ContactsListViewItem(
@@ -45,13 +45,10 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
             children: [
               SlidableAction(
                 onPressed: (context) {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) {
-                      return EditProfileView(
-                          index: widget.index,
-                          contactEntity: widget.contactEntity);
-                    },
-                  ));
+                  GoRouter.of(context).push(
+                    '${AppRouter.kEditProfileView}/${widget.index}',
+                    extra: widget.contactEntity,
+                  );
                 },
                 icon: FontAwesomeIcons.penToSquare,
                 foregroundColor: const Color(0xffF2C94C),
@@ -101,43 +98,9 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
                 contactEntity: widget.contactEntity,
               );
             },
-            leading: CachedNetworkImage(
-              placeholder: (context, url) => const SizedBox(
-                height: 14,
-                width: 14,
-                child: CircularProgressIndicator(
-                  color: kPrimaryColor,
-                ),
-              ),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
-              imageUrl: widget.contactEntity.avatar ?? kRFImage,
-              imageBuilder: (context, imageProvider) {
-                return CircleAvatar(
-                  backgroundImage: imageProvider,
-                  backgroundColor: Colors.transparent,
-                  radius: 24,
-                );
-              },
-            ),
+            leading: AvatarWidget(widget: widget),
             selected: isLongPressed,
-            title: Padding(
-              padding: const EdgeInsets.only(bottom: 8.0, left: 16),
-              child: Row(
-                children: [
-                  Text(
-                    "${widget.contactEntity.firstName} ${widget.contactEntity.lastName ?? ""}",
-                    style: GoogleFonts.raleway(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black),
-                  ),
-                  const SizedBox(width: 4),
-                  widget.contactEntity.isFavorite!
-                      ? SvgPicture.asset(AssetsData.starIcon)
-                      : Container(),
-                ],
-              ),
-            ),
+            title: NameWidget(widget: widget),
             subtitle: Padding(
               padding: const EdgeInsets.only(bottom: 8.0, left: 16),
               child: Text(
