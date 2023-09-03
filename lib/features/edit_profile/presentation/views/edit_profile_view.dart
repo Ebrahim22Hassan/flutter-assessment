@@ -4,6 +4,7 @@ import 'package:flutter_assessment/features/edit_profile/manager/edit_profile_cu
 import 'package:flutter_assessment/features/home/domain/entities/contact_entity.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import '../../../../core/utils/app_router.dart';
 import 'widgets/edit_profile_view_body.dart';
 
 class EditProfileView extends StatelessWidget {
@@ -24,7 +25,7 @@ class EditProfileView extends StatelessWidget {
           title: 'Profile',
           leadingIcon: IconButton(
               onPressed: () {
-                GoRouter.of(context).pop();
+                GoRouter.of(context).pushReplacement(AppRouter.kHomeView);
               },
               icon: const Icon(Icons.arrow_back_ios)),
         ),

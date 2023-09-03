@@ -1,13 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_assessment/core/function/favorite_modal_bottom_sheet.dart';
-import 'package:flutter_assessment/features/profile/presentation/views/profile_view.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../../../constants.dart';
 import '../../../../../core/function/toggle_favorite_contact.dart';
+import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/assets.dart';
 import '../../../../edit_profile/presentation/views/edit_profile_view.dart';
 import '../../../domain/entities/contact_entity.dart';
@@ -149,17 +150,10 @@ class _ContactsListViewItemState extends State<ContactsListViewItem> {
             ),
             trailing: GestureDetector(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) {
-                      return ProfileView(
-                          contactEntity: widget.contactEntity,
-                          index: widget.index);
-                    },
-                  ));
-                  // GoRouter.of(context).push(
-                  //   AppRouter.kProfileView,
-                  //   extra: widget.contactEntity,
-                  // );
+                  GoRouter.of(context).push(
+                    '${AppRouter.kProfileView}/${widget.index}',
+                    extra: widget.contactEntity,
+                  );
                 },
                 child: SvgPicture.asset(
                   AssetsData.messageIcon,

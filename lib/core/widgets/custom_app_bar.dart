@@ -20,6 +20,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       systemOverlayStyle: const SystemUiOverlayStyle(
         statusBarColor: kPrimaryColor,
       ),
+      automaticallyImplyLeading: false,
       title: Text(title,
           style: GoogleFonts.raleway(
             textStyle: const TextStyle(

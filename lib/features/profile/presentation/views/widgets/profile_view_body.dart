@@ -3,9 +3,10 @@ import 'package:flutter_assessment/constants.dart';
 import 'package:flutter_assessment/core/utils/assets.dart';
 import 'package:flutter_assessment/core/utils/styles.dart';
 import 'package:flutter_assessment/core/widgets/custom_text_button.dart';
-import 'package:flutter_assessment/features/edit_profile/presentation/views/edit_profile_view.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 import '../../../../../core/function/send_email.dart';
+import '../../../../../core/utils/app_router.dart';
 import '../../../../home/domain/entities/contact_entity.dart';
 import 'mail_section.dart';
 import '../../../../../core/widgets/profile_image_stack.dart';
@@ -29,12 +30,10 @@ class ProfileViewBody extends StatelessWidget {
             children: [
               CustomTextButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) {
-                      return EditProfileView(
-                          index: index, contactEntity: contactEntity);
-                    },
-                  ));
+                  GoRouter.of(context).push(
+                    '${AppRouter.kEditProfileView}/$index',
+                    extra: contactEntity,
+                  );
                 },
                 text: "Edit",
                 textColor: kPrimaryColor,
