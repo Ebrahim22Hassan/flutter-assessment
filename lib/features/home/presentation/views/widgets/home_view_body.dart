@@ -42,8 +42,10 @@ class _HomeViewBodyState extends State<HomeViewBody> {
     if (searchController.text.isNotEmpty) {
       contactsList.retainWhere((element) {
         String searchTerm = searchController.text.toLowerCase();
-        String contactName = element.firstName.toLowerCase();
-        return contactName.contains(searchTerm);
+        String firstName = element.firstName.toLowerCase();
+        String lastName = element.lastName!.toLowerCase();
+
+        return firstName.contains(searchTerm) || lastName.contains(searchTerm);
       });
       setState(() {
         contactsFiltered = contactsList;
